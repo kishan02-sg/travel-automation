@@ -1,0 +1,40 @@
+name: Maven Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Install dependencies
+      run: mvn -B dependency:resolve
+
+    - name: Run Tests
+      run: mvn -B clean test
+
+    - name: Upload Extent Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: ExtentReport
+        path: target/ExtentReports/
+
+    - name: Upload Surefire Reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: SurefireReports
+        path: target/surefire-reports/
