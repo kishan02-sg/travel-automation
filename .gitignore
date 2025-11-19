@@ -1,0 +1,24 @@
+# BUILD & OUTPUT
+target/
+test-output/
+allure-results/
+surefire-reports/
+
+# IDE SPECIFIC
+.classpath
+.project
+.settings/
+.idea/
+.vscode/
+
+# OS FILES
+Thumbs.db
+.DS_Store
+
+# MISC
+*.log
+*.tmp
+*.class
+
+# IGNORE DUPLICATE PROJECT
+travel-automation/
